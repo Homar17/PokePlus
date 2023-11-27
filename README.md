@@ -76,12 +76,11 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Acerca del proyecto
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
+PokePlus es un programa en C++ que utiliza la PokeAPI a través de las librerias de windows.s para obtener y organizar los datos de los Pokémon. El programa emplea una estructura de datos de lista de doble enlace para almacenar de forma eficiente la información antes de permitir a los usuarios ordenarla con un algoritmo de ordenamiento.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
