@@ -106,38 +106,12 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+El mayor prerequisito para poder utilizar esta aplicación es contar con el sistema operativo de Windows por el uso de las librerías
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+El programa funciona obteniendo los datos de la API "PokeAPI" y mediante un ciclo For este toma la cantidad de 10 pokemones de los cuales en una lista doblemente ligada se guardan tanto el nombre, ID y HP del pokemon, esto para luego ser ordenadas mediante el uso de QuickSort
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
