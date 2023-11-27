@@ -10,7 +10,9 @@ using namespace winrt::Windows::Data::Json;
 using namespace winrt::Windows::Web::Http;
 using namespace winrt::Windows::Foundation::Collections;
 
-// Assuming you have a Pokemon class defined somewhere
+void quickSort(int [], int, int);
+int partition(int[], int, int);
+
 class Pokemon {
 public:
     int id;
@@ -21,94 +23,81 @@ public:
     Pokemon(int _id, hstring _name, hstring _hp, hstring _attack)
         : id(_id), name(_name), hp(_hp), attack(_attack) {}
 };
-// Definición de la clase Nodo
+
 class Nodo {
 public:
     Pokemon pokemon;
-    Nodo* siguiente;
-    Nodo* anterior;
+    Nodo* next;
+    Nodo* prev;
 
-    Nodo(Pokemon valor) : pokemon(valor), siguiente(nullptr), anterior(nullptr) {}
+    Nodo(Pokemon valor) : pokemon(valor), next(nullptr), prev(nullptr) {}
 };
 
-// Definición de la clase ListaDobleEnlazada
-class ListaDobleEnlazada {
+
+class DoublyLinkedList {
 private:
-    Nodo* cabeza;
+    Nodo* head;
 
 public:
-    ListaDobleEnlazada() : cabeza(nullptr) {}
+    DoublyLinkedList() : head(nullptr) {}
 
-    // Método para insertar al final de la lista
+
     void insertarAlFinal(Pokemon valor) {
         Nodo* nuevoNodo = new Nodo(valor);
-        if (!cabeza) {
-            cabeza = nuevoNodo;
+        if (!head) {
+            head = nuevoNodo;
         }
         else {
-            Nodo* temp = cabeza;
-            while (temp->siguiente) {
-                temp = temp->siguiente;
+            Nodo* temp = head;
+            while (temp->next) {
+                temp = temp->next;
             }
-            temp->siguiente = nuevoNodo;
-            nuevoNodo->anterior = temp;
+            temp->next = nuevoNodo;
+            nuevoNodo->prev = temp;
         }
     }
 
-    // Método para imprimir la lista en orden
     void imprimirEnOrden() {
-        Nodo* temp = cabeza;
+        Nodo* temp = head;
         while (temp) {
-            std::wcout << temp->pokemon.name.c_str() << " ";
-            temp = temp->siguiente;
+            std::wcout << temp->pokemon.name.c_str() << " " << "hp: "<< temp->pokemon.hp.c_str()<<"\n";
+            temp = temp->next;
         }
         std::cout << std::endl;
     }
 
-    // Método para imprimir la lista en orden inverso
+
     void imprimirEnOrdenInverso() {
-        Nodo* temp = cabeza;
-        while (temp->siguiente) {
-            temp = temp->siguiente;
+        Nodo* temp = head;
+        while (temp->next) {
+            temp = temp->next;
         }
         while (temp) {
             std::wcout << temp->pokemon.name.c_str() << " ";
-            temp = temp->anterior;
+            temp = temp->prev;
         }
         std::cout << std::endl;
     }
-    hstring createArray(hstring arr[]) {
-        Nodo* temp = cabeza;
-        int i = 0;
-        while (temp) {
-            std::wcout << temp->pokemon.name.c_str() << " ";
-            arr[i]= temp->pokemon.name;
-            temp = temp->siguiente;
-            i++;
-        }
-    }
-    static void quickSort(hstring arr[], int low, int high) {
-        if (low < high) {
-            int pi = partition(arr, low, high);
 
-            quickSort(arr, low, pi - 1);
-            quickSort(arr, pi + 1, high);
-        }
-    }
+    int* createArray() {
+        int* arr = new int[10];  // Utilizar 'new' para asignar memoria en el heap
+        if (head != nullptr) {
 
-    static int partition(hstring arr[], int low, int high) {
-        hstring pivot = arr[high];
-        int i = (low - 1);
-
-        for (int j = low; j <= high - 1; j++) {
-            if (arr[j] < pivot) {
+            Nodo* temp = head;
+            int i = 0;
+            while (temp && i < 10) {
+                
+                // Convertir la cadena 'hp' a entero y almacenarla en el array
+                arr[i] = _wtoi(temp->pokemon.hp.c_str());
+                temp = temp->next;
                 i++;
-                std::swap(arr[i], arr[j]);
             }
+            return arr;
         }
-        std::swap(arr[i + 1], arr[high]);
-        return (i + 1);
+        return nullptr;
     }
+
+
 };
 
 int main() {
@@ -118,7 +107,7 @@ int main() {
     HttpClient httpClient;
 
     // Assuming you have a List class to store Pokemon objects
-    ListaDobleEnlazada pokemonList;
+    DoublyLinkedList  pokemonList;
 
     for (int i = 1; i <= 10; ++i) {
         // Construir la URL con el nuevo valor de i
@@ -134,7 +123,6 @@ int main() {
 
         // Extraer información específica
         hstring name = jsonObject.GetNamedString(L"name");
-        std::wcout << L"Para el Pokemon con ID " << i << L", el nombre es: " << name.c_str() << std::endl;
 
         // Variables para almacenar las stats
         hstring hp;
@@ -163,18 +151,49 @@ int main() {
         Pokemon new_pokemon(i, name, hp, attack);
         pokemonList.insertarAlFinal(new_pokemon);
 
-        std::wcout << std::endl;  // Separador entre Pokémon
+    
     }
 
-    // Haz lo que necesites con la lista de Pokémon, por ejemplo, imprimirlos
     pokemonList.imprimirEnOrden();
-    pokemonList.imprimirEnOrdenInverso();
 
-    ListaDobleEnlazada::quickSort(arr, 0, 9);
+    int* poke_hps = pokemonList.createArray();
+    int longitud = 10;  // Tamaño conocido del array, ajusta según sea necesario
 
-    std::wcout << L"Lista ordenada: ";
-    for (int i = 0; i < 10; i++) {
-        std::wcout << arr[i].c_str() << " ";
+
+
+    quickSort(poke_hps, 0, longitud - 1);
+
+    // Imprimir el resultado del quick sort
+    std::wcout << "\nhp ordenados: ";
+    for (int i = 0; i < longitud; ++i) {
+        std::cout << poke_hps[i] << " ";
     }
+    std::wcout << std::endl;
+
     return 0;
+}
+
+
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            std::swap(arr[i], arr[j]);
+        }
+    }
+    std::swap(arr[i + 1], arr[high]);
+    return (i + 1);
 }
