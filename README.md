@@ -32,7 +32,7 @@
 <h3 align="center">PokePlus</h3>
 
   <p align="center">
-    project_description
+    Ordenación de datos con C++ y PokeAPI.
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
