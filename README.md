@@ -49,7 +49,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Tabla de contenido</summary>
   <ol>
     <li>
       <a href="#acerca-del-proyecto">Acerca del proyecto</a>
@@ -77,8 +77,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 PokePlus es un programa que utiliza la PokeAPI a través de las librerias de windows.s para obtener y organizar los datos de los Pokémon. El programa emplea una estructura de datos de lista de doble enlace para almacenar de forma eficiente la información antes de permitir a los usuarios ordenarla con un algoritmo de ordenamiento.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
