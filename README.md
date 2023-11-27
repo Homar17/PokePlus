@@ -52,7 +52,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Acerca del proyecto</a>
+      <a href="#acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
