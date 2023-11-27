@@ -20,18 +20,16 @@
 -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/Homar17/PokePlus">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://www.popsockets.co/dw/image/v2/BFSM_PRD/on/demandware.static/-/Sites-popsockets-master-catalog/default/dw7fe2333f/images/hi-res/Enamel_Pokeball_01_Top-View.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">PokePlus</h3>
 
   <p align="center">
     project_description
